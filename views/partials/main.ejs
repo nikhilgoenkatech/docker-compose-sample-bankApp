@@ -1,0 +1,38 @@
+<div class="jumbotron jumbotron-fluid" >
+  <div class="container">
+  	<div class="row">
+  		<div class="col-md-3"></div>
+        <div class="col-md-12">
+        <span style="color: white;margin-left:240px"> Account Details </span>
+		    <table tbl-top>
+                         <thead>
+                          <th style="color:black">Card Holder</th>
+                          <th style="color:black">Card number</th>
+                          <th style="color:black">Email-address</th>
+                          <th style="color:black">Available Balance</th>
+                         </thead>
+                      <tbody>
+                        <tr>
+                          <td align="center" style="color:white"><%= userdata.name %></td>
+                          <td align="center" style="color:white"><%= userdata.card %></td>
+                          <td align="center" style="color:white"><%= userdata.email %></td>
+                          <td align="center" style="color:white"><%= userdata.money %></td>
+			</tr>
+                      </table>
+		    	<div class="wrapper">
+		    	  <div class="centered">
+		         	<a href="/member/withdraw" type="button" class="btn btn--primary" style="width: 200px;display:inline-block;margin-left:10px">Pay Bills</a><br/>
+				<a href="/member/deposit"type="button" class="btn btn--primary" style="width: 200px;display:inline-block;margin-top: 10px;margin-left: 10px">Funds Transfer</a><br/>
+				<a href="/member/deposit"type="button" class="btn btn--primary" style="width: 200px;display:inline-block;margin-top: 10px;margin-left: 10px">Credit Card</a><br/>
+				<a href="/member/deposit"type="button" class="btn btn--primary" style="width: 200px;display:inline-block;margin-top: 10px;margin-left: 10px">Home Loan</a><br/>
+				<a href="/member/deposit"type="button" class="btn btn--primary" style="width: 200px;display:inline-block;margin-top: 10px;margin-left: 10px">Personal Loan</a><br/>
+			  </div>
+			</div>
+                        <div class="wrapper_rt">
+                        </div>
+
+        </div>
+        <div class="col-md-3"></div>
+  	</div>
+  </div>
+</div>
