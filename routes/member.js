@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   if(req.cookies.logged){
     var uid = req.cookies.logged;
     var query = User.findOne({ '_id' : uid });
-    query.select('name email money card image_url');
+    query.select('name email money card image_url')
     query.exec(function (err, user) {
     if (err) return handleError(err);
       userdata=user;
@@ -23,6 +23,10 @@ router.get('/withdraw', function(req, res, next) {
   res.render('member', { action: 'WITHDRAW', userdata: userdata, title: 'Withdraw' });
 });
 router.get('/deposit', function(req, res, next) {
+  console.log("will set the amount");
+  /*res.setHeader({'amount': req.body.amount});
+  res.setHeader({'userdata': userdata});
+  console.log("Have done setting");*/
   res.render('member', { action: 'DEPOSIT', userdata: userdata, title: 'Deposit' });
 });
 router.get('/logout', function(req, res, next) {
@@ -31,7 +35,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.post('/transact', function(req, res, next) {
-  console.log('transact working');
+  console.log('TRANSACT WORKING');
   var amount = req.body.amount;
   var card = req.body.card;
   var action = req.body.action;
@@ -42,6 +46,16 @@ router.post('/transact', function(req, res, next) {
       { 'card' : card },
       { $set: { 'money' : newAmount } }
       );
+      console.log('MY HEADERS')
+      console.log(req.headers)
+      res.setHeader('amount', req.body.amount);
+      res.setHeader('card', req.body.card);
+      res.setHeader('action', req.body.action);
+      console.log("Have done setting");
+      console.log(res.getHeaders('amount'));
+      console.log(res.getHeaders('card'));
+      console.log(res.getHeaders('action'));
+
       deposit.exec(function (err, result) {
       if (err) return handleError(err);
         console.log(result);
