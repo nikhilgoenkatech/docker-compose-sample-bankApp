@@ -56,6 +56,7 @@ router.post('/transact', function(req, res, next) {
       console.log(res.getHeaders('card'));
       console.log(res.getHeaders('action'));
 
+      res.setHeader('releaseid',process.env.releaseid)
       deposit.exec(function (err, result) {
       if (err) return handleError(err);
         console.log(result);

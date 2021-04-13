@@ -3,6 +3,7 @@ FROM node:10
 MAINTAINER Nikhil Goenka "dynatraceone@dynatrace.com" 
 
 # Update aptitude with new repo
+ENV releaseid="1.0"
 RUN apt-get update
 
 # Install software 
