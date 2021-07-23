@@ -26,7 +26,7 @@ html, body {
     top:10px;
     position: absolute;
     border: 0;
-    background: url("./images/download.jpg") no-repeat 0 0;
+    background: url("/images/download.jpg") no-repeat 0 0;
 }
 
 .navbar-fixed-top {
@@ -848,7 +848,7 @@ table#change-history tbody th {
     font-weight: 300;
     font-size: 24px;
     color: #f5dd5d;
-    background: url("./images/Dynatrace_log.png") no-repeat 0 0;
+    background: url("/images/Dynatrace_log.png") no-repeat 0 0;
 }
 
 #branding h1, #branding h1 a:link, #branding h1 a:visited {

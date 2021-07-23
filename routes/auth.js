@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   if(req.cookies.logged){
   	res.redirect('/member');
   } else {
-  	res.render('/login', { title: 'Login' });
+  	res.render('login', { title: 'Login' });
   }
 });
 

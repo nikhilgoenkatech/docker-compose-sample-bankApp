@@ -51,15 +51,17 @@ router.post('/transact', function(req, res, next) {
       res.setHeader('amount', req.body.amount);
       res.setHeader('card', req.body.card);
       res.setHeader('action', req.body.action);
-      res.setHeader('releaseid',process.env.releaseid);
-      
+      if(process.env.releaseid) {
+        res.setHeader('releaseid',process.env.releaseid);
+      }
       console.log("Have set the headers to retrieve request-attribute");
       console.log(res.getHeaders('amount'));
       console.log(res.getHeaders('card'));
       console.log(res.getHeaders('action'));
-      console.log(res.getHeaders('releaseid'));
-
-      res.setHeader('releaseid',process.env.releaseid);
+      if(process.env.releaseid) {
+        console.log(res.getHeaders('releaseid'));
+        res.setHeader('releaseid',process.env.releaseid);
+      }
       deposit.exec(function (err, result) {
       if (err) return handleError(err);
         console.log(result);
