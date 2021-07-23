@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       res.render('member', { userdata: user, title: 'member', action:'MAIN' });
     });
   } else {
-    res.redirect('/login');
+    res.redirect('./login');
   }
 });
 router.get('/withdraw', function(req, res, next) {
@@ -29,12 +29,12 @@ router.get('/deposit', function(req, res, next) {
   console.log("Have done setting");*/
   res.render('member', { action: 'DEPOSIT', userdata: userdata, title: 'Deposit' });
 });
-router.get('/logout', function(req, res, next) {
+router.get('./logout', function(req, res, next) {
   res.clearCookie("logged");
-  res.redirect('/login');
+  res.redirect('./login');
 });
 
-router.post('/transact', function(req, res, next) {
+router.post('./transact', function(req, res, next) {
   console.log('TRANSACT WORKING');
   var amount = req.body.amount;
   var card = req.body.card;
@@ -67,7 +67,7 @@ router.post('/transact', function(req, res, next) {
     };
     if(action=='WITHDRAW'){
       var newAmount = parseInt(userdata.money) - parseInt(amount);
-      if(newAmount<0){res.redirect('/member'); return;}
+      if(newAmount<0){res.redirect('./member'); return;}
       var withdraw = User.updateOne(
       { 'card' : card },
       { $set: { 'money' : newAmount } }
@@ -77,6 +77,6 @@ router.post('/transact', function(req, res, next) {
         console.log(result);
       });
     };
-    res.redirect('/member');
+    res.redirect('./member');
 });
 module.exports = router;
