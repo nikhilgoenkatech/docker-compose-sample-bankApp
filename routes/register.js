@@ -6,14 +6,14 @@ var mongoose = require('mongoose');
 /* Get register page. */
 router.get('/', function(req, res, next) {
   if(req.cookies.logged){
-  	res.redirect('/member');
+  	res.redirect('./member');
   } else {
   	res.render('register', { title: 'Register' });
   }
 });
 
 /* Proccess Register*/
-router.post('/', function(req, res, next) {
+router.post('./', function(req, res, next) {
   var user = new User({
   	name: req.body.name,
   	card: req.body.card,
