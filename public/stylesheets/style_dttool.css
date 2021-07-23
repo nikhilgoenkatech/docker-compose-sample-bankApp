@@ -225,7 +225,7 @@ body.block {
     margin-left: -10px;
     line-height:50px;
     position: relative;
-    background: url("images/Dynatrace_log.png") no-repeat 0 0;
+    background: url("./images/Dynatrace_log.png") no-repeat 0 0;
 }
 
 .navbar-fixed-top {
@@ -292,7 +292,7 @@ table th {
   color: red;
   font-weight: bold;
   font-family: Tahoma;
-  background-image:url('images/loading.gif')
+  background-image:url('./images/loading.gif')
 }
 
 #mydiv {
@@ -307,7 +307,7 @@ table th {
   right: 0;
   bottom: 0;
   margin: auto; /* presto! */
-  background-image:url("images/loading.gif")
+  background-image:url("./images/loading.gif")
 }
 
 #popupBoxOnePosition{
