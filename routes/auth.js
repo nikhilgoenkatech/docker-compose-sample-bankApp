@@ -4,16 +4,16 @@ var User = require('../models/user');
 var mongoose = require('mongoose');
 
 /* Get login page. */
-router.get('./', function(req, res, next) {
+router.get('/', function(req, res, next) {
   if(req.cookies.logged){
-  	res.redirect('./member');
+  	res.redirect('/member');
   } else {
   	res.render('/login', { title: 'Login' });
   }
 });
 
 /* Proccess Login */
-router.post('./', function(req, res, next) {
+router.post('/', function(req, res, next) {
   var email = req.body.email;
   var pass = req.body.password;
   var query = User.findOne({ 'email': email, 'password':pass });
@@ -23,7 +23,7 @@ router.post('./', function(req, res, next) {
   if (user){
   	console.log('Email: %s, Password: %s', user.email, user.password);
   	res.cookie('logged',user.id);
-  	res.redirect('./member');
+  	res.redirect('/member');
     } else {
   	res.render('index', { title: '    Invalid Credentials' });
   }
