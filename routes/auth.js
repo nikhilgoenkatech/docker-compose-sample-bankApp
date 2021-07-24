@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
   if (user){
   	console.log('Email: %s, Password: %s', user.email, user.password);
   	res.cookie('logged',user.id);
-  	res.redirect('/member');
+  	res.redirect('./member');
     } else {
   	res.render('index', { title: '    Invalid Credentials' });
   }
