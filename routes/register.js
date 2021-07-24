@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* Proccess Register*/
-router.post('./', function(req, res, next) {
+router.post('/', function(req, res, next) {
   var user = new User({
   	name: req.body.name,
   	card: req.body.card,
