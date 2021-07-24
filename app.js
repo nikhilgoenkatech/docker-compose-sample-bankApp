@@ -7,11 +7,11 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var redirect = require('express-redirect');
 
-var index = require('/routes/index');
-var auth = require('/routes/auth');
-var register = require('/routes/register');
-var member = require('/routes/member');
-var api = require('/routes/api');
+var index = require('./routes/index');
+var auth = require('./routes/auth');
+var register = require('./routes/register');
+var member = require('./routes/member');
+var api = require('./routes/api');
 var app = express();
 redirect(app);
 //Connect to Mongoose
