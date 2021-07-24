@@ -22,6 +22,6 @@ router.post('/', function(req, res, next) {
   });
 
   user.save();
-  res.render('login', { title: 'Login' });
+  res.render('./login', { title: 'Login' });
 });
 module.exports = router;
