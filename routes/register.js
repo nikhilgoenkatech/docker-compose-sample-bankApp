@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* Proccess Register*/
+console.log ("call POST")
 router.post('/', function(req, res, next) {
   console.log ("IN POST")
   var user = new User({
