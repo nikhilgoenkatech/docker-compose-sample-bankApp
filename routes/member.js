@@ -20,14 +20,14 @@ router.get('/', function(req, res, next) {
   }
 });
 router.get('/withdraw', function(req, res, next) {
-  res.render('../member', { action: 'WITHDRAW', userdata: userdata, title: 'Withdraw' });
+  res.render('member', { action: 'WITHDRAW', userdata: userdata, title: 'Withdraw' });
 });
 router.get('/deposit', function(req, res, next) {
   console.log("will set the amount");
   /*res.setHeader({'amount': req.body.amount});
   res.setHeader({'userdata': userdata});
   console.log("Have done setting");*/
-  res.render('../member', { action: 'DEPOSIT', userdata: userdata, title: 'Deposit' });
+  res.render('member', { action: 'DEPOSIT', userdata: userdata, title: 'Deposit' });
 });
 router.get('/logout', function(req, res, next) {
   res.clearCookie("logged");
