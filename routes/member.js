@@ -32,7 +32,7 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/login');
 });
 
-router.post('/transact', function(req, res, next) {
+router.post('transact', function(req, res, next) {
   console.log('TRANSACT WORKING');
   console.log(req.baseURL);
   
