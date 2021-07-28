@@ -32,9 +32,10 @@ router.get('/logout', function(req, res, next) {
   res.redirect('/login');
 });
 
-router.post('transact', function(req, res, next) {
+router.post('/transact', function(req, res, next) {
   console.log('TRANSACT WORKING');
   console.log(req.baseURL);
+  console.log(next);
   
   var amount = req.body.amount;
   var card = req.body.card;
