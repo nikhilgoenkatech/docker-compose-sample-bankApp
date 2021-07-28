@@ -69,7 +69,7 @@ router.post('/transact', function(req, res, next) {
     };
     if(action=='WITHDRAW'){
       var newAmount = parseInt(userdata.money) - parseInt(amount);
-      if(newAmount<0){res.redirect('/member'); return;}
+      if(newAmount<0){res.redirect(req.baseUrl + '/member'); return;}
       var withdraw = User.updateOne(
       { 'card' : card },
       { $set: { 'money' : newAmount } }
@@ -79,6 +79,6 @@ router.post('/transact', function(req, res, next) {
         console.log(result);
       });
     };
-    res.redirect('/member');
+    res.redirect(req.baseUrl + '/member');
 });
 module.exports = router;
