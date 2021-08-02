@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: deployment-blue
+ namespace: canary-deployment
+ annotations:
+   service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+spec:
+ selector:
+   run: blue
+ ports:
+   - protocol: TCP
+     port: 3000
+     targetPort: 3000
+     name: http
+ type: NodePort
+ #type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: deployment-blue
+ namespace: canary-deployment
+spec:
+ selector:
+   matchLabels:
+     run: blue
+ template:
+   metadata:
+     labels:
+       run: blue
+       app.kubernetes.io/version: "blue"
+   spec:
+     containers:
+     - name: frontend
+       #image: nikhilgoenka/sample-bank:blue 
+       image: nikhilgoenka/samplebank-nginx:blue
+       imagePullPolicy: Always
+       ports:
+       - containerPort: 3000
+         protocol: TCP
