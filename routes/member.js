@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       res.render('member', { userdata: user, title: 'member', action:'MAIN' });
     });
   } else {
-    res.redirect('/login');
+    res.redirect('./login');
   }
 });
 router.get('/withdraw', function(req, res, next) {
