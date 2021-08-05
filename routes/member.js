@@ -80,6 +80,6 @@ router.post('/transact', function(req, res, next) {
         console.log(result);
       });
     };
-    res.redirect('member');
+    res.redirect('/');
 });
 module.exports = router;
