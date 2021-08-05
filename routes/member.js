@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       res.render('member', { userdata: user, title: 'member', action:'MAIN' });
     });
   } else {
-    res.redirect('./login');
+    res.redirect('/login');
   }
 });
 router.get('/withdraw', function(req, res, next) {
@@ -29,7 +29,7 @@ router.get('/deposit', function(req, res, next) {
 });
 router.get('/logout', function(req, res, next) {
   res.clearCookie("logged");
-  res.redirect('/login');
+  res.redirect('./login');
 });
 
 router.post('/transact', function(req, res, next) {
