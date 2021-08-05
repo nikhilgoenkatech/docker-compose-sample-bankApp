@@ -27,9 +27,9 @@ router.get('/deposit', function(req, res, next) {
   console.log("Deposit function");
   res.render('member', { action: 'DEPOSIT', userdata: userdata, title: 'Deposit' });
 });
-router.get('./logout', function(req, res, next) {
+router.get('/logout', function(req, res, next) {
   res.clearCookie("logged");
-  res.redirect('./login');
+  res.redirect('../login');
 });
 
 router.post('/transact', function(req, res, next) {
