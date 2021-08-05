@@ -80,7 +80,7 @@ router.post('/transact', function(req, res, next) {
         console.log(result);
       });
     };
-    res.render('member', { userdata: user, title: 'member', action:'MAIN' });
+    res.redirect('../member');
 
 });
 module.exports = router;
