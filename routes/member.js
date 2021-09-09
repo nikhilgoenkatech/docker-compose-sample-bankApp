@@ -20,22 +20,23 @@ router.get('/', function(req, res, next) {
   }
 });
 router.get('/withdraw', function(req, res, next) {
+  console.log("Withdraw function");
   res.render('member', { action: 'WITHDRAW', userdata: userdata, title: 'Withdraw' });
 });
 router.get('/deposit', function(req, res, next) {
-  console.log("will set the amount");
-  /*res.setHeader({'amount': req.body.amount});
-  res.setHeader({'userdata': userdata});
-  console.log("Have done setting");*/
+  console.log("Deposit function");
   res.render('member', { action: 'DEPOSIT', userdata: userdata, title: 'Deposit' });
 });
 router.get('/logout', function(req, res, next) {
   res.clearCookie("logged");
-  res.redirect('/login');
+  res.redirect('../login');
 });
 
 router.post('/transact', function(req, res, next) {
   console.log('TRANSACT WORKING');
+  console.log(req.baseURL);
+  console.log(next);
+  
   var amount = req.body.amount;
   var card = req.body.card;
   var action = req.body.action;
@@ -51,15 +52,17 @@ router.post('/transact', function(req, res, next) {
       res.setHeader('amount', req.body.amount);
       res.setHeader('card', req.body.card);
       res.setHeader('action', req.body.action);
-      res.setHeader('releaseid',process.env.releaseid);
-      
+      if(process.env.releaseid) {
+        res.setHeader('releaseid',process.env.releaseid);
+      }
       console.log("Have set the headers to retrieve request-attribute");
       console.log(res.getHeaders('amount'));
       console.log(res.getHeaders('card'));
       console.log(res.getHeaders('action'));
-      console.log(res.getHeaders('releaseid'));
-
-      res.setHeader('releaseid',process.env.releaseid);
+      if(process.env.releaseid) {
+        console.log(res.getHeaders('releaseid'));
+        res.setHeader('releaseid',process.env.releaseid);
+      }
       deposit.exec(function (err, result) {
       if (err) return handleError(err);
         console.log(result);
@@ -67,7 +70,7 @@ router.post('/transact', function(req, res, next) {
     };
     if(action=='WITHDRAW'){
       var newAmount = parseInt(userdata.money) - parseInt(amount);
-      if(newAmount<0){res.redirect('/member'); return;}
+      if(newAmount<0){res.redirect('../member'); return;}
       var withdraw = User.updateOne(
       { 'card' : card },
       { $set: { 'money' : newAmount } }
@@ -77,6 +80,7 @@ router.post('/transact', function(req, res, next) {
         console.log(result);
       });
     };
-    res.redirect('/member');
+    res.redirect('../member');
+
 });
 module.exports = router;

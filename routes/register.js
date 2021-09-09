@@ -8,12 +8,14 @@ router.get('/', function(req, res, next) {
   if(req.cookies.logged){
   	res.redirect('/member');
   } else {
-  	res.render('register', { title: 'Register' });
+  	res.render('./register', { title: 'Register' });
   }
 });
 
 /* Proccess Register*/
+console.log ("call POST")
 router.post('/', function(req, res, next) {
+  console.log ("IN POST")
   var user = new User({
   	name: req.body.name,
   	card: req.body.card,
@@ -22,6 +24,6 @@ router.post('/', function(req, res, next) {
   });
 
   user.save();
-  res.render('login', { title: 'Login' });
+  res.render('./login', { title: 'Login' });
 });
 module.exports = router;

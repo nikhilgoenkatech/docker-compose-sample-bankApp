@@ -17,7 +17,7 @@ body {
     font-family: "BerninaSans", "Open Sans", sans-serif;
     color: #454646;
     counter-reset: section;
-    background-image:url("/images/Dynatrace-logo.svg");
+    background-image:url("../images/Dynatrace-logo.svg");
     background-position: 97% 95%;
     background-size:150px;
     background-repeat:no-repeat;background-attachment:fixed;}

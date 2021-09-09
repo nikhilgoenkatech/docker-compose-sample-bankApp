@@ -1,9 +1,10 @@
-<link rel="stylesheet" type="text/css" href="/stylesheets/style_dttool.css">
+<link rel="stylesheet" type="text/css" href="./stylesheets/style_dttool.css">
 
-<%- include('partials/header_login') %>
 <% if(action=='MAIN') { %>
+    <%- include('partials/header_others') %>
     <%- include('partials/main') %>
 <% } else { %>
+        <%- include('partials/header_login') %>
 	<%- include('partials/transact') %>
 <% } %>
 <%- include('partials/footer') %>
