@@ -26,6 +26,8 @@ router.post('/', function(req, res, next) {
   	res.redirect('./member');
     } else {
   	res.render('index', { title: '    Invalid Credentials' });
+    res.status(403);
+    console.log('User has entered invalid credentials');
   }
   });
 });
