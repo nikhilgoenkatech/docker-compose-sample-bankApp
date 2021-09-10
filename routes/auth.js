@@ -25,9 +25,9 @@ router.post('/', function(req, res, next) {
   	res.cookie('logged',user.id);
   	res.redirect('./member');
     } else {
-  	res.render('index', { title: '    Invalid Credentials' });
-    res.status(403);
-    console.log('User has entered invalid credentials');
+      res.status(500);
+  	  res.render('index', { title: '    Invalid Credentials' });    
+      console.log('User has entered invalid credentials');
   }
   });
 });
