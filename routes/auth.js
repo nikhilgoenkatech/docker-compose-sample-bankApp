@@ -2,6 +2,13 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var mongoose = require('mongoose');
+var winston = require('winston');
+var logger = winston.createLogger({
+  format: winston.format.json(),
+  transports: [
+      new winston.transports.Console()
+  ]
+});
 
 /* Get login page. */
 router.get('/', function(req, res, next) {
@@ -28,6 +35,8 @@ router.post('/', function(req, res, next) {
       res.status(500);
   	  res.render('index', { title: '    Invalid Credentials' });    
       console.log('User has entered invalid credentials');
+      logger.info('User has entered invalid credentials');
+
   }
   });
 });
