@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* Get all users. */
-router.get('/users', function(req, res, next) {
+router.get('/user', function(req, res, next) {
   var query = User.find();
   query.select('name card money');
   query.exec(function (err, users) {
