@@ -32,10 +32,17 @@ router.post('/', function(req, res, next) {
   query.select('id email password');
   query.exec(function (err, user) {
   if (err) return handleError(err);
+  if (user){
   	console.log('Email: %s, Password: %s', user.email, user.password);
   	res.cookie('logged',user.id);
-  	res.redirect('/member');
-  	res.render('index', { title: '    Invalid Credentials' });
+  	res.redirect('./member');
+    } else {
+      res.status(500);
+  	  res.render('index', { title: '    Invalid Credentials' });    
+      console.log('User has entered invalid credentials');
+      logger.info('User has entered invalid credentials');
+
+  }
   });
 });
 module.exports = router;
