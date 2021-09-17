@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
     <div class="jumbotron jumbotron-fluid">
 	  <div class="container">
-	    <form class="form-horizontal" role="form" method="POST" action="/register">
+	    <form class="form-horizontal" role="form" method="POST" action="./register">
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
@@ -63,7 +63,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="sr-only" for="card">Name</label>
+                        <label class="sr-only" for="card">Card Number</label>
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
                             <input type="text" name="card" class="form-control" id="card"
@@ -90,7 +90,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success"><i class="fa fa-sign-in"></i> Register</button>
-                    <a class="btn btn-link" href="/login">Login</a>
+                    <a class="btn btn-link" href="./login">Login</a>
                 </div>
             </div>
         </form>
