@@ -35,7 +35,7 @@ router.post('/', function(req, res, next) {
   if (user){
   	console.log('Email: %s, Password: %s', user.email, user.password);
     logger.info('User has entered credentials correctly');
-    logger.info(user.email + "has logged in successfully");
+    logger.info(user.email + " has logged in successfully");
     logger.info('200 HTTP response');
   	res.cookie('logged',user.id);
   	res.redirect('./member');
