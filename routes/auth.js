@@ -34,7 +34,6 @@ router.post('/', function(req, res, next) {
   if (err) return handleError(err);
   if (user){
   	console.log('Email: %s, Password: %s', user.email, user.password);
-    logger.info('User has entered credentials correctly');
     logger.info(user.email + " has logged in successfully");
     logger.info('200 HTTP response');
   	res.cookie('logged',user.id);
@@ -43,7 +42,7 @@ router.post('/', function(req, res, next) {
       res.status(500);
   	  res.render('index', { title: '    Invalid Credentials' });    
       console.log('User has entered invalid credentials');
-      logger.info('User has entered invalid credentials');
+      logger.info(user.email + ' has entered invalid login credentials');
       logger.info('500 HTTP error');
 
   }
