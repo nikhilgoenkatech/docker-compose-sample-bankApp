@@ -43,7 +43,7 @@ router.post('/', function(req, res, next) {
   	  res.render('index', { title: '    Invalid Credentials' });    
       console.log('User has entered invalid credentials');
       logger.log({
-        level: 'warning",
+        level: 'info",
         message: 'User has entered invalid credentials'),
       });
       //logger.info('500 HTTP error');
