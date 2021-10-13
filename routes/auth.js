@@ -42,7 +42,8 @@ router.post('/', function(req, res, next) {
   	  res.render('index', { title: '    Invalid Credentials' });    
       console.log('User has entered invalid credentials');
       logger.warn('User has entered invalid credentials');
-      logger.debug('500 HTTP error');
+      winston.log('debug', '500 HTTP error');
+      //logger.debug('500 HTTP error');
 
   }
   });
