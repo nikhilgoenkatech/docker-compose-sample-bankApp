@@ -3,8 +3,17 @@ var router = express.Router();
 var User = require('../models/user');
 var mongoose = require('mongoose');
 var winston = require('winston');
+
+var addProcessEntityFormat = winston.format(info => {
+  dt.entity.process_group = "process_group-8fc27be05bf25ba5";
+  return info;
+});
+
 var logger = winston.createLogger({
-  format: winston.format.json(),
+  format: winston.format.combine(
+    addProcessEntityFormat(),
+    winston.format.json()
+  ),
   transports: [
     //new winston.transports.Console()
     new (winston.transports.File)(
