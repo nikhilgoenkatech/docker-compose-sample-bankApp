@@ -1,0 +1,41 @@
+FROM node:10
+
+MAINTAINER Nikhil Goenka "dynatraceone@dynatrace.com"
+
+# Make a new directory to put our code in.
+RUN mkdir /deployments
+
+#paasInstaller_Unix_all.zip is manually downloaded in the local directory
+ARG DYNATRACE_IMAGE=/deployments/paasInstaller_Unix_all.zip
+COPY paasInstaller_Unix_all.zip "$DYNATRACE_IMAGE"
+
+#Setting Environment variables
+ARG DT_TENANT="tenantdetails"
+ARG DT_TENANTTOKEN="tokendetails"
+ARG DT_CONNECTION_POINT="endpointdetails"
+
+#Set the environment variable that will be used by dynatrace-agent64.sh to setup log directory and other details 
+ENV DT_HOME="/opt/dynatrace/oneagent"
+
+#Create home directory and unzip the manually downloaded PaasIntegration zip file in it
+RUN mkdir -p "$DT_HOME" && \
+    unzip -d "$DT_HOME" "$DYNATRACE_IMAGE"
+
+#Set the library path that dynamic loader is required to load and are in LD_PRELOAD
+ENV LD_PRELOAD="/opt/dynatrace/oneagent/agent/lib64/liboneagentproc.so"
+
+#Steps to prepare docker for my application and can be ignored
+# Update aptitude with new repo
+RUN apt-get update
+
+# Install software
+RUN apt-get install -y git
+
+RUN git clone https://github.com/nikhilgoenkatech/docker-compose-sample-bankApp.git
+WORKDIR /docker-compose-sample-bankApp/
+
+RUN npm install
+EXPOSE 3000
+
+ENTRYPOINT [ "/opt/dynatrace/oneagent/dynatrace-agent64.sh" ]
+CMD ["npm","start"]
