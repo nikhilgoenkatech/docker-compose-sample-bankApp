@@ -44,10 +44,10 @@ def push_event(logger, eventmsg, job_name):
   try:
     #Configure DT_TENANT as "https://xxx.live.dynatrace.com/" for SaaS
     # For managed, configure DT_TENANT = "https://managed.server/e/{environment-id}/"
-    DT_TENANT="https://sbu10597.sprint.dynatracelabs.com"
+    DT_TENANT="https://your-tenant-url"
 
     #DT_TOKEN with "push events" permission
-    DT_TOKEN="hYhb16iTTN-l3mzFWlwh7"
+    DT_TOKEN="your-api-token"
 
     logger.debug("In push_event")
     #/api/v1/events is the API to push events in dynatrace. More infomration can be found in https://www.dynatrace.com/support/help/shortlink/api-events
