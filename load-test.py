@@ -57,7 +57,12 @@ if __name__=="__main__":
    #Job_log which can act as a repository later to identify more about the test-cases executed during the job execution
    log_file = "Test-case.log"
    #test_hostname would your application hosted
-   test_hostname = "enter_your_public_host_ip"
+
+   get_hostip = "http://169.254.169.254/latest/meta-data/public-ipv4"
+
+   output = requests.get(get_hostip)
+
+   test_hostname = output.text
 
    #Initialize the loggin module in python
    logging.basicConfig(filename=log_file,
