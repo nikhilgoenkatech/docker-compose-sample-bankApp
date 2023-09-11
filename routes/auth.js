@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
   	res.cookie('logged',user.id);
   	res.redirect('./member');
     } else {
-      res.status(500);
+      res.status(200);
   	  res.render('index', { title: '    Invalid Credentials' });    
       console.log('User has entered invalid credentials');
       logger.warn('User has entered invalid credentials');
