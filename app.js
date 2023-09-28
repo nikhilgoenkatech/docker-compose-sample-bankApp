@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 var redirect = require('express-redirect');
 
 var index = require('./routes/index');
@@ -14,12 +13,44 @@ var member = require('./routes/member');
 var api = require('./routes/api');
 var app = express();
 redirect(app);
+
 //Connect to Mongoose
-//mongoose.connect('mongodb://mongo:27017/sample-bank')
-mongoose.connect('mongodb://d1pacmworkshop:password@mongo:27017&authSource=admin')
-//mongoose.connect('mongodb://jeffreynerona:VyxfpsiDdWh4oF1I@cluster0-shard-00-00-k7flg.mongodb.net:27017,cluster0-shard-00-01-k7flg.mongodb.net:27017,cluster0-shard-00-02-k7flg.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin');
-var db = mongoose.connection;
-console.log("CONNECTED!!")
+const mongoose = require('mongoose');
+
+// Set the native Node.js Promise object
+mongoose.Promise = global.Promise;
+
+// Connect to local mongoose if the release is odd number or connect locally if even
+let release_number = 1;
+console.log('RELEASE_VERSION=',process.env.RELEASE_VERSION);
+if (process.env.RELEASE_VERSION) {
+  release_number = process.env.RELEASE_VERSION;
+  console.log('release_number picked by environment variable. So, build will be succesfull if odd else will fail.');
+}
+
+if(release_number % 2 == 0) {
+  console.log('Even release number, will connect to shared mongodb');
+  mongoose.connect('mongodb://jeffreynerona:VyxfpsiDdWh4oF1I@cluster0-shard-00-00-k7flg.mongodb.net:27017,cluster0-shard-00-01-k7flg.mongodb.net:27017,cluster0-shard-00-02-k7flg.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+     .then(() => {
+      console.log('Connected successfully to MongoDB');
+      var db = mongoose.connection;
+  })
+} else {
+  console.log('Odd release number, will connect to mongo docker');
+  const connectionString = `mongodb://d1pacmworkshop:password@mongo:27017/admin?authSource=admin`;
+  mongoose.connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+  const db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'Connection error:'));
+  db.once('open', () => {
+    console.log('Connected to MongoDB');
+  });
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
